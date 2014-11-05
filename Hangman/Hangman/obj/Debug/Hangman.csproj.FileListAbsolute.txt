@@ -1,0 +1,1 @@
+C:\Users\Technologist\Documents\GitHub\HangmanGUI\Hangman\Hangman\bin\Debug\Hangman.exe.config
