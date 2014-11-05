@@ -17,23 +17,27 @@ namespace Hangman
         private int numGuesses = 7; // Guesses that the user has left
         private bool win = false;
 
-        public Hangman(string gameWord)
+        public Hangman()
         {
+            Random rng = new Random();
+            // Fill the possible words
+            List<string> possibleWords = new List<string>() { "apple", "orange", "grapes" };
+            // Pick the random word for this game
+            word = possibleWords.ElementAt(rng.Next(possibleWords.Count));
+
             // Get all of the components ready
             InitializeComponent();
 
             // Initalize the game
-            InitGame(gameWord);
+            InitGame();
         }
-        private void InitGame(string randomWord)
+        private void InitGame()
         {
             // Center game on the screen
             this.CenterToScreen();
 
             // Set the game text initially
             lblGameText.Text = "Welcome to Hangman!";
-            // Set the word that's passed in
-            word = randomWord;
 
             // reset win boolean incase the game is restarted
             win = false;
