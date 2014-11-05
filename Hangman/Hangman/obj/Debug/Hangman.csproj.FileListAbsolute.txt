@@ -1,1 +1,9 @@
 C:\Users\Technologist\Documents\GitHub\HangmanGUI\Hangman\Hangman\bin\Debug\Hangman.exe.config
+C:\Users\Technologist\Documents\GitHub\HangmanGUI\Hangman\Hangman\obj\Debug\Hangman.csprojResolveAssemblyReference.cache
+C:\Users\Technologist\Documents\GitHub\HangmanGUI\Hangman\Hangman\obj\Debug\Hangman.Hangman.resources
+C:\Users\Technologist\Documents\GitHub\HangmanGUI\Hangman\Hangman\obj\Debug\Hangman.Properties.Resources.resources
+C:\Users\Technologist\Documents\GitHub\HangmanGUI\Hangman\Hangman\obj\Debug\Hangman.csproj.GenerateResource.Cache
+C:\Users\Technologist\Documents\GitHub\HangmanGUI\Hangman\Hangman\bin\Debug\Hangman.exe
+C:\Users\Technologist\Documents\GitHub\HangmanGUI\Hangman\Hangman\bin\Debug\Hangman.pdb
+C:\Users\Technologist\Documents\GitHub\HangmanGUI\Hangman\Hangman\obj\Debug\Hangman.exe
+C:\Users\Technologist\Documents\GitHub\HangmanGUI\Hangman\Hangman\obj\Debug\Hangman.pdb

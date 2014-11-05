@@ -28,12 +28,82 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.grpHangman = new System.Windows.Forms.GroupBox();
+            this.lblDescription = new System.Windows.Forms.Label();
+            this.txtGuess = new System.Windows.Forms.TextBox();
+            this.lblGameText = new System.Windows.Forms.Label();
+            this.txtGameText = new System.Windows.Forms.TextBox();
+            this.SuspendLayout();
+            // 
+            // grpHangman
+            // 
+            this.grpHangman.Location = new System.Drawing.Point(258, 12);
+            this.grpHangman.Name = "grpHangman";
+            this.grpHangman.Size = new System.Drawing.Size(278, 273);
+            this.grpHangman.TabIndex = 0;
+            this.grpHangman.TabStop = false;
+            // 
+            // lblDescription
+            // 
+            this.lblDescription.AutoSize = true;
+            this.lblDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDescription.Location = new System.Drawing.Point(10, 346);
+            this.lblDescription.Name = "lblDescription";
+            this.lblDescription.Size = new System.Drawing.Size(319, 25);
+            this.lblDescription.TabIndex = 1;
+            this.lblDescription.Text = "Guess a letter or the entire word";
+            this.lblDescription.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // txtGuess
+            // 
+            this.txtGuess.Location = new System.Drawing.Point(335, 351);
+            this.txtGuess.Name = "txtGuess";
+            this.txtGuess.Size = new System.Drawing.Size(172, 20);
+            this.txtGuess.TabIndex = 2;
+            this.txtGuess.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtGuess_KeyDown);
+            // 
+            // lblGameText
+            // 
+            this.lblGameText.AutoSize = true;
+            this.lblGameText.Location = new System.Drawing.Point(30, 33);
+            this.lblGameText.Name = "lblGameText";
+            this.lblGameText.Size = new System.Drawing.Size(0, 13);
+            this.lblGameText.TabIndex = 3;
+            // 
+            // txtGameText
+            // 
+            this.txtGameText.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtGameText.Location = new System.Drawing.Point(15, 291);
+            this.txtGameText.Name = "txtGameText";
+            this.txtGameText.ReadOnly = true;
+            this.txtGameText.Size = new System.Drawing.Size(521, 38);
+            this.txtGameText.TabIndex = 4;
+            this.txtGameText.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // Hangman
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "Form1";
+            this.ClientSize = new System.Drawing.Size(548, 390);
+            this.Controls.Add(this.txtGameText);
+            this.Controls.Add(this.lblGameText);
+            this.Controls.Add(this.txtGuess);
+            this.Controls.Add(this.lblDescription);
+            this.Controls.Add(this.grpHangman);
+            this.Name = "Hangman";
+            this.Text = "Hangman";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
+
+        private System.Windows.Forms.GroupBox grpHangman;
+        private System.Windows.Forms.Label lblDescription;
+        private System.Windows.Forms.TextBox txtGuess;
+        private System.Windows.Forms.Label lblGameText;
+        private System.Windows.Forms.TextBox txtGameText;
     }
 }
 
