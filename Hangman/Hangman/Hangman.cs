@@ -15,6 +15,7 @@ namespace Hangman
         private string word = string.Empty; // The game word to be used the entire time
         private List<string> userGuesses = new List<string>(); // Place to store the previous guesses
         private int numGuesses = 7; // Guesses that the user has left
+        private bool win = false;
 
         public Hangman(string gameWord)
         {
@@ -26,10 +27,16 @@ namespace Hangman
         }
         private void InitGame(string randomWord)
         {
+            // Center game on the screen
+            this.CenterToScreen();
+
             // Set the game text initially
             lblGameText.Text = "Welcome to Hangman!";
             // Set the word that's passed in
             word = randomWord;
+
+            // reset win boolean incase the game is restarted
+            win = false;
 
             // Update the text box for the game before the user starts
             UpdateTextBox();
@@ -67,20 +74,33 @@ namespace Hangman
                 { // Full answer guess
                     if (userGuessInput == word) 
                     { // winner
+                        win = true;
+                        UpdateTextBox();
+                        UpdateGameText();
+
                     }
                     else
                     {
                         // bad guess
                         numGuesses--;
+                        UpdateGameText();
                     }
                 }
                 else
                 { // Singular letter guess
 
+                    // Check to see if the guess was in the word
+                    if(!(word.ToLower().Contains(userGuessInput.ToLower())))
+                    { // bad guess
+                        numGuesses--;
+                    } // else good guess
+
                     // Add the letter guess to the list userGuesses
                     userGuesses.Add(userGuessInput);
                     // After checking the guess update the textbox
                     UpdateTextBox();
+                    // Also, update the display text
+                    UpdateGameText();
                 }
             }
             else
@@ -90,33 +110,56 @@ namespace Hangman
                 txtGuess.Clear();
             }
         }
+        /// <summary>
+        /// Update the display text to reflect the number of guesses and other messages to the user
+        /// </summary>
+        private void UpdateGameText()
+        {
+            if (win)
+            {// Display Winning Text
+                lblGameText.Text = "Winner Winner Chicken Dinner!";
+            }
+            else if (numGuesses == 0)
+            {
+                // Total FAIL
+                lblGameText.Text = "FAIL";
+            }
+            else
+            {
+                lblGameText.Text = "Number of Guesses Left: " + numGuesses;
+            }
+        }
 
         /// <summary>
         /// Update the text box so the user knows their current play status
         /// </summary>
-        /// <param name="guessesSoFar">List of user guesses so far</param>
         private void UpdateTextBox()
         {
             // Create the string to add to the textbox
             StringBuilder tempString = new StringBuilder();
-            for (int i = 0; i < word.Length; i++)
+            if (!win)
             {
-                string currentLetter = word[i].ToString().ToLower();
-                if(userGuesses.Contains(currentLetter))
+                
+                for (int i = 0; i < word.Length; i++)
                 {
-                    // Append a previous correct guess to the output
-                    tempString.Append(word[i] + " ");
+                    string currentLetter = word[i].ToString().ToLower();
+                    if (userGuesses.Contains(currentLetter))
+                    {
+                        // Append a previous correct guess to the output
+                        tempString.Append(word[i] + " ");
+                    }
+                    else
+                    {
+                        // This index of the word has never been guessed correctly
+                        // Fill it's space with an underscore
+                        tempString.Append("_ ");
+                    }
                 }
-                else
-                {
-                    // This index of the word has never been guessed correctly
-                    // Fill it's space with an underscore
-                    tempString.Append("_ ");
-                }
+                // Update the textbox text value to reflect the new status of the game
+                txtGameText.Text = tempString.ToString();
             }
-
-            // Update the textbox text value to reflect the new status of the game
-            txtGameText.Text = tempString.ToString();
+            else { txtGameText.Text = word; }
+            // Refresh the content after changing it
             txtGameText.Refresh();
         }
         /// <summary>

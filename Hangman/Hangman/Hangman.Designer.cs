@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.grpHangman = new System.Windows.Forms.GroupBox();
-            this.lblDescription = new System.Windows.Forms.Label();
+            this.lblDisplayText = new System.Windows.Forms.Label();
             this.txtGuess = new System.Windows.Forms.TextBox();
             this.lblGameText = new System.Windows.Forms.Label();
             this.txtGameText = new System.Windows.Forms.TextBox();
@@ -43,16 +43,16 @@
             this.grpHangman.TabIndex = 0;
             this.grpHangman.TabStop = false;
             // 
-            // lblDescription
+            // lblDisplayText
             // 
-            this.lblDescription.AutoSize = true;
-            this.lblDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescription.Location = new System.Drawing.Point(10, 346);
-            this.lblDescription.Name = "lblDescription";
-            this.lblDescription.Size = new System.Drawing.Size(319, 25);
-            this.lblDescription.TabIndex = 1;
-            this.lblDescription.Text = "Guess a letter or the entire word";
-            this.lblDescription.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblDisplayText.AutoSize = true;
+            this.lblDisplayText.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDisplayText.Location = new System.Drawing.Point(10, 346);
+            this.lblDisplayText.Name = "lblDisplayText";
+            this.lblDisplayText.Size = new System.Drawing.Size(319, 25);
+            this.lblDisplayText.TabIndex = 1;
+            this.lblDisplayText.Text = "Guess a letter or the entire word";
+            this.lblDisplayText.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // txtGuess
             // 
@@ -88,7 +88,7 @@
             this.Controls.Add(this.txtGameText);
             this.Controls.Add(this.lblGameText);
             this.Controls.Add(this.txtGuess);
-            this.Controls.Add(this.lblDescription);
+            this.Controls.Add(this.lblDisplayText);
             this.Controls.Add(this.grpHangman);
             this.Name = "Hangman";
             this.Text = "Hangman";
@@ -100,7 +100,7 @@
         #endregion
 
         private System.Windows.Forms.GroupBox grpHangman;
-        private System.Windows.Forms.Label lblDescription;
+        private System.Windows.Forms.Label lblDisplayText;
         private System.Windows.Forms.TextBox txtGuess;
         private System.Windows.Forms.Label lblGameText;
         private System.Windows.Forms.TextBox txtGameText;
