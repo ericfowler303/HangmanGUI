@@ -25,7 +25,7 @@ namespace Hangman
             // Pick the random word for this game
             word = possibleWords.ElementAt(rng.Next(possibleWords.Count));
 
-            // Get all of the components ready
+            // Get all of the GUI components ready
             InitializeComponent();
 
             // Initalize the game
@@ -54,16 +54,15 @@ namespace Hangman
         private void txtGuess_KeyDown(object sender, KeyEventArgs e)
         {
             // Filter when the user hit's the ENTER key inside of the textbox to check the guess
-            if (e.KeyCode == Keys.Enter)
+            // Only check new guesses when the user is still playing
+            if (e.KeyCode == Keys.Enter && !win)
             {
                 CheckGuess(txtGuess.Text);
                 // Clear the previous guess from the text box
                 txtGuess.Text = string.Empty;
                 // Update the hangman based on the number of guesses remaining
 
-            }
-
-            
+            }            
         }
 
         /// <summary>
@@ -74,8 +73,9 @@ namespace Hangman
             // Check that the input is a valid letter character first
             if (ValidInput(userGuessInput))
             {
+                // Full answer guess
                 if (userGuessInput.Length > 1)
-                { // Full answer guess
+                { 
                     if (userGuessInput == word) 
                     { // winner
                         win = true;
@@ -122,18 +122,36 @@ namespace Hangman
             if (win)
             {// Display Winning Text
                 lblGameText.Text = "Winner Winner Chicken Dinner!";
+                UpdateHangmanImage();
             }
             else if (numGuesses == 0)
             {
                 // Total FAIL
                 lblGameText.Text = "FAIL";
+                UpdateHangmanImage();
+
             }
             else
             {
                 lblGameText.Text = "Number of Guesses Left: " + numGuesses;
+                UpdateHangmanImage();
             }
         }
-
+        /// <summary>
+        /// Update the image of the Hangman depending on the number of guesses left
+        /// or if the user has won the game.
+        /// </summary>
+        private void UpdateHangmanImage()
+        {
+            if (win)
+            {
+                // Winning Hangman Image
+            }
+            else
+            {
+                // Display Hangman based on number of guesses remaining
+            }
+        }
         /// <summary>
         /// Update the text box so the user knows their current play status
         /// </summary>
