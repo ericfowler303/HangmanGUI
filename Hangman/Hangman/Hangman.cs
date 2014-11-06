@@ -150,6 +150,12 @@ namespace Hangman
             {// Display Winning Text
                 lblGameText.Text = "Winner Winner Chicken Dinner!";
                 UpdateHangmanImage();
+
+                // Play sound for the winner
+                Stream str = this.GetType().Assembly.GetManifestResourceStream("Hangman.PriceIsRight-winner.wav");
+                SoundPlayer snd = new SoundPlayer(str);
+                snd.Play();
+
                 // Ask if they want to play again
                 PlayAgain();
 
