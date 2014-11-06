@@ -14,7 +14,7 @@ namespace Hangman
     {
         private string word = string.Empty; // The game word to be used the entire time
         private List<string> userGuesses = new List<string>(); // Place to store the previous guesses
-        private int numGuesses = 7; // Guesses that the user has left
+        private int numGuesses = 9; // Guesses that the user has left
         private bool win = false;
 
         public Hangman()
@@ -33,6 +33,8 @@ namespace Hangman
         }
         private void InitGame()
         {
+            // Reset the PictureBox to the beginning image
+
             // Center game on the screen
             this.CenterToScreen();
 
