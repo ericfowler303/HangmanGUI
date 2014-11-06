@@ -78,16 +78,16 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="hangmanA.gif" />
-    <Content Include="hangmanB.gif" />
-    <Content Include="hangmanC.gif" />
-    <Content Include="hangmanD.gif" />
-    <Content Include="hangmanE.gif" />
-    <Content Include="hangmanF.gif" />
-    <Content Include="hangmanG.gif" />
-    <Content Include="hangmanH.gif" />
-    <Content Include="hangmanI.gif" />
-    <Content Include="hangmanJ.gif" />
+    <Content Include="hangmanA.png" />
+    <Content Include="hangmanB.png" />
+    <Content Include="hangmanC.png" />
+    <Content Include="hangmanD.png" />
+    <Content Include="hangmanE.png" />
+    <Content Include="hangmanF.png" />
+    <Content Include="hangmanG.png" />
+    <Content Include="hangmanH.png" />
+    <Content Include="hangmanI.png" />
+    <Content Include="hangmanJ.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
