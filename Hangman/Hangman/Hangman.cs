@@ -34,7 +34,7 @@ namespace Hangman
         private void InitGame()
         {
             // Reset the PictureBox to the beginning image
-
+            UpdateHangmanImage();
             // Center game on the screen
             this.CenterToScreen();
 
@@ -145,13 +145,16 @@ namespace Hangman
         /// </summary>
         private void UpdateHangmanImage()
         {
-            if (win)
+            if (win && numGuesses > 0)
             {
                 // Winning Hangman Image
+                picHangman.Image = Image.FromStream(this.GetType().Assembly.GetManifestResourceStream("Hangman.hangman9.png"));
             }
             else
             {
                 // Display Hangman based on number of guesses remaining
+                string hangmanImageName = "Hangman.hangman" + numGuesses + ".png";
+                picHangman.Image = Image.FromStream(this.GetType().Assembly.GetManifestResourceStream(hangmanImageName));
             }
         }
         /// <summary>
