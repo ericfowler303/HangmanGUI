@@ -7,45 +7,51 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Media;
+using System.IO;
 
 namespace Hangman
 {
     public partial class Hangman : Form
     {
         private string word = string.Empty; // The game word to be used the entire time
-        private List<string> userGuesses = new List<string>(); // Place to store the previous guesses
-        private int numGuesses = 9; // Guesses that the user has left
+        private List<string> userGuesses; // Place to store the previous guesses
+        private int numGuesses; // Guesses that the user has left
         private bool win = false;
 
         public Hangman()
         {
-            Random rng = new Random();
-            // Fill the possible words
-            List<string> possibleWords = new List<string>() { "apple", "orange", "grapes" };
-            // Pick the random word for this game
-            word = possibleWords.ElementAt(rng.Next(possibleWords.Count));
-
             // Get all of the GUI components ready
             InitializeComponent();
 
             // Initalize the game
             InitGame();
         }
+
         private void InitGame()
         {
-            // Reset the PictureBox to the beginning image
-            UpdateHangmanImage();
             // Center game on the screen
             this.CenterToScreen();
+
+            // Pick a new random word
+            Random rng = new Random();
+            // Fill the possible words
+            List<string> possibleWords = new List<string>() { "apple", "orange", "grapes" };
+            // Pick the random word for this game
+            word = possibleWords.ElementAt(rng.Next(possibleWords.Count));
 
             // Set the game text initially
             lblGameText.Text = "Welcome to Hangman!";
 
-            // reset win boolean incase the game is restarted
+            // reset variables for new game
             win = false;
+            userGuesses = new List<string>();
+            numGuesses = 9;
 
-            // Update the text box for the game before the user starts
+
+            // Update the GUI elements before the game starts
             UpdateTextBox();
+            UpdateHangmanImage();
 
         }
         /// <summary>
@@ -88,7 +94,8 @@ namespace Hangman
                     else
                     {
                         // bad guess
-                        BadGuess();
+                        BadGuessSound();
+                        numGuesses--;
                         UpdateGameText();
                     }
                 }
@@ -98,7 +105,11 @@ namespace Hangman
                     // Check to see if the guess was in the word
                     if(!(word.ToLower().Contains(userGuessInput.ToLower())))
                     { // bad guess
-                        BadGuess();
+                        if (!(userGuesses.Contains(userGuessInput.ToLower())))
+                        { // Newly bad guess
+                            numGuesses--;
+                        }
+                        BadGuessSound();
                     } // else good guess
 
                     // If the correct guess is the final letter in the answer, set win to true
@@ -115,7 +126,7 @@ namespace Hangman
                     if (tempString.Append(userGuessInput).ToString().ToLower() == word.ToLower()) { win = true; }
 
                     // Add the letter guess to the list userGuesses
-                    userGuesses.Add(userGuessInput);
+                    userGuesses.Add(userGuessInput.ToLower());
                     // After checking the guess update the textbox
                     UpdateTextBox();
                     // Also, update the display text
@@ -144,6 +155,19 @@ namespace Hangman
                 // Total FAIL
                 lblGameText.Text = "FAIL";
                 UpdateHangmanImage();
+                // Play buzzer sound on wrong guess
+                Stream str = this.GetType().Assembly.GetManifestResourceStream("Hangman.ThePriceIsRight-LoserHorns.wav");
+                SoundPlayer snd = new SoundPlayer(str);
+                snd.Play();
+
+                // Ask if they want to play again
+                DialogResult questionResult = MessageBox.Show("Do you want to play again?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if(questionResult == DialogResult.Yes)
+                {
+                    // Restart the Game
+                    InitGame();
+                }
+                else { Application.Exit(); } // Quit
 
             }
             else
@@ -202,9 +226,12 @@ namespace Hangman
             // Refresh the content after changing it
             txtGameText.Refresh();
         }
-        private void BadGuess()
+        private void BadGuessSound()
         {
-            numGuesses--;
+            // Play buzzer sound on wrong guess
+            Stream str = this.GetType().Assembly.GetManifestResourceStream("Hangman.FamilyFeud-Buzzer3.wav");
+            SoundPlayer snd = new SoundPlayer(str);
+            snd.Play();
         }
         /// <summary>
         /// Check that the user is only typing in letters, not special characters or numbers
