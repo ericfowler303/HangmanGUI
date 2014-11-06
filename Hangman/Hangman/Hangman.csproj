@@ -77,6 +77,18 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="hangmanA.gif" />
+    <Content Include="hangmanB.gif" />
+    <Content Include="hangmanC.gif" />
+    <Content Include="hangmanD.gif" />
+    <Content Include="hangmanE.gif" />
+    <Content Include="hangmanF.gif" />
+    <Content Include="hangmanG.gif" />
+    <Content Include="hangmanH.gif" />
+    <Content Include="hangmanI.gif" />
+    <Content Include="hangmanJ.gif" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
