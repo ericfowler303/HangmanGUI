@@ -88,7 +88,7 @@ namespace Hangman
                     else
                     {
                         // bad guess
-                        numGuesses--;
+                        BadGuess();
                         UpdateGameText();
                     }
                 }
@@ -98,7 +98,7 @@ namespace Hangman
                     // Check to see if the guess was in the word
                     if(!(word.ToLower().Contains(userGuessInput.ToLower())))
                     { // bad guess
-                        numGuesses--;
+                        BadGuess();
                     } // else good guess
 
                     // If the correct guess is the final letter in the answer, set win to true
@@ -201,6 +201,10 @@ namespace Hangman
             else { txtGameText.Text = word; } // Winner get's full word reveal
             // Refresh the content after changing it
             txtGameText.Refresh();
+        }
+        private void BadGuess()
+        {
+            numGuesses--;
         }
         /// <summary>
         /// Check that the user is only typing in letters, not special characters or numbers
