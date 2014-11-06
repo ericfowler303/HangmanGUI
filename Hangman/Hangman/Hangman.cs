@@ -109,6 +109,11 @@ namespace Hangman
                         { // Newly bad guess
                             numGuesses--;
                         }
+                        else {
+                            // Display a message box telling them that their guess was a duplicate
+                            MessageBox.Show("Guess something original", "Duplicate Guess", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        
                         BadGuessSound();
                     } // else good guess
 
