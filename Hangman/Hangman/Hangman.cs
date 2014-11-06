@@ -36,7 +36,7 @@ namespace Hangman
             // Pick a new random word
             Random rng = new Random();
             // Fill the possible words
-            List<string> possibleWords = new List<string>() { "apple", "orange", "grapes" };
+            List<string> possibleWords = new List<string>() { "apple", "orange", "grapes", "mango", "pineapple", "steak", "kiwi" };
             // Pick the random word for this game
             word = possibleWords.ElementAt(rng.Next(possibleWords.Count));
 
@@ -112,6 +112,9 @@ namespace Hangman
                         BadGuessSound();
                     } // else good guess
 
+                    // Add the letter guess to the list userGuesses
+                    userGuesses.Add(userGuessInput.ToLower());
+
                     // If the correct guess is the final letter in the answer, set win to true
                     StringBuilder tempString = new StringBuilder();
                     for (int i = 0; i < word.Length; i++)
@@ -123,10 +126,8 @@ namespace Hangman
                             tempString.Append(word[i]);
                         }
                     } // Check for final word match
-                    if (tempString.Append(userGuessInput).ToString().ToLower() == word.ToLower()) { win = true; }
+                    if (tempString.ToString().ToLower() == word.ToLower()) { win = true; }
 
-                    // Add the letter guess to the list userGuesses
-                    userGuesses.Add(userGuessInput.ToLower());
                     // After checking the guess update the textbox
                     UpdateTextBox();
                     // Also, update the display text
@@ -149,6 +150,9 @@ namespace Hangman
             {// Display Winning Text
                 lblGameText.Text = "Winner Winner Chicken Dinner!";
                 UpdateHangmanImage();
+                // Ask if they want to play again
+                PlayAgain();
+
             }
             else if (numGuesses == 0)
             {
@@ -161,13 +165,7 @@ namespace Hangman
                 snd.Play();
 
                 // Ask if they want to play again
-                DialogResult questionResult = MessageBox.Show("Do you want to play again?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if(questionResult == DialogResult.Yes)
-                {
-                    // Restart the Game
-                    InitGame();
-                }
-                else { Application.Exit(); } // Quit
+                PlayAgain();
 
             }
             else
@@ -175,6 +173,19 @@ namespace Hangman
                 lblGameText.Text = "Number of Guesses Left: " + numGuesses;
                 UpdateHangmanImage();
             }
+        }
+        /// <summary>
+        /// A function to ask the player if they want to play again after a win or loss
+        /// </summary>
+        private void PlayAgain()
+        {
+            DialogResult questionResult = MessageBox.Show("Do you want to play again?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (questionResult == DialogResult.Yes)
+            {
+                // Restart the Game
+                InitGame();
+            }
+            else { Application.Exit(); } // Quit
         }
         /// <summary>
         /// Update the image of the Hangman depending on the number of guesses left
