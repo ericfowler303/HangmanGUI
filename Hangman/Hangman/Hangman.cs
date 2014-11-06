@@ -101,6 +101,19 @@ namespace Hangman
                         numGuesses--;
                     } // else good guess
 
+                    // If the correct guess is the final letter in the answer, set win to true
+                    StringBuilder tempString = new StringBuilder();
+                    for (int i = 0; i < word.Length; i++)
+                    {
+                        string currentLetter = word[i].ToString().ToLower();
+                        if (userGuesses.Contains(currentLetter))
+                        {
+                            // Append a previous correct guess to the output
+                            tempString.Append(word[i]);
+                        }
+                    } // Check for final word match
+                    if (tempString.Append(userGuessInput).ToString().ToLower() == word.ToLower()) { win = true; }
+
                     // Add the letter guess to the list userGuesses
                     userGuesses.Add(userGuessInput);
                     // After checking the guess update the textbox
@@ -185,7 +198,7 @@ namespace Hangman
                 // Update the textbox text value to reflect the new status of the game
                 txtGameText.Text = tempString.ToString();
             }
-            else { txtGameText.Text = word; }
+            else { txtGameText.Text = word; } // Winner get's full word reveal
             // Refresh the content after changing it
             txtGameText.Refresh();
         }
